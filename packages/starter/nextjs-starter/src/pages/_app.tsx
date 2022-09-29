@@ -1,7 +1,7 @@
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets-mrchaos';
 import { clusterApiUrl } from '@solana/web3.js';
 import type { AppProps } from 'next/app';
 import type { FC } from 'react';
@@ -23,7 +23,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             /**
              * Select the wallets you wish to support, by instantiating wallet adapters here.
              *
-             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets`.
+             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets-mrchaos`.
              * That package supports tree shaking and lazy loading -- only the wallets you import
              * will be compiled into your application, and only the dependencies of wallets that
              * your users connect to will be loaded.

@@ -36,7 +36,7 @@
         "@solana/wallet-adapter-base": "^0.9.16",
         "@solana/wallet-adapter-react": "^0.15.18",
         "@solana/wallet-adapter-react-ui": "^0.9.16",
-        "@solana/wallet-adapter-wallets": "^0.18.5",
+        "@solana/wallet-adapter-wallets-mrchaos": "^0.18.5",
         "next": "^12.2.5",
         "react": "^18.0.0",
         "react-dom": "^18.0.0"

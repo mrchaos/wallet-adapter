@@ -38,7 +38,7 @@ npm install --save \
     @solana/wallet-adapter-base \
     @solana/wallet-adapter-react \
     @solana/wallet-adapter-react-ui \
-    @solana/wallet-adapter-wallets \
+    @solana/wallet-adapter-wallets-mrchaos \
     @solana/web3.js \
     @solana-mobile/wallet-adapter-mobile \
     react
@@ -50,7 +50,7 @@ npm install --save \
 import React, { FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets-mrchaos';
 import {
     WalletModalProvider,
     WalletDisconnectButton,
@@ -73,7 +73,7 @@ export const Wallet: FC = () => {
             /**
              * Select the wallets you wish to support, by instantiating wallet adapters here.
              *
-             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets`.
+             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets-mrchaos`.
              * That package supports tree shaking and lazy loading -- only the wallets you import
              * will be compiled into your application, and only the dependencies of wallets that
              * your users connect to will be loaded.
@@ -156,7 +156,7 @@ You can use the [wallets](https://github.com/solana-labs/wallet-adapter/tree/mas
 
 | package                                                                                                   | description                                            | npm                                                                                                      |
 |-----------------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| [wallets](https://github.com/solana-labs/wallet-adapter/tree/master/packages/wallets/wallets)             | Includes all the wallets (with tree shaking)           | [`@solana/wallet-adapter-wallets`](https://npmjs.com/package/@solana/wallet-adapter-wallets)             |
+| [wallets](https://github.com/solana-labs/wallet-adapter/tree/master/packages/wallets/wallets)             | Includes all the wallets (with tree shaking)           | [`@solana/wallet-adapter-wallets-mrchaos`](https://npmjs.com/package/@solana/wallet-adapter-wallets-mrchaos)             |
 | [avana](https://github.com/solana-labs/wallet-adapter/tree/master/packages/wallets/avana)                 | Adapter for [Avana](https://www.avanawallet.com)       | [`@solana/wallet-adapter-avana`](https://npmjs.com/package/@solana/wallet-adapter-avana)                 |
 | [backpack](https://github.com/solana-labs/wallet-adapter/tree/master/packages/wallets/backpack)           | Adapter for [Backpack](https://backpack.app)           | [`@solana/wallet-adapter-backpack`](https://npmjs.com/package/@solana/wallet-adapter-backpack)           |
 | [bitkeep](https://github.com/solana-labs/wallet-adapter/tree/master/packages/wallets/bitkeep)             | Adapter for [BitKeep](https://bitkeep.com)             | [`@solana/wallet-adapter-bitkeep`](https://npmjs.com/package/@solana/wallet-adapter-bitkeep)             |

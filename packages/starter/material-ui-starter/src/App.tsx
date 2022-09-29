@@ -2,7 +2,7 @@ import type { WalletError } from '@solana/wallet-adapter-base';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletDialogProvider, WalletMultiButton } from '@solana/wallet-adapter-material-ui';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { FakeWalletAdapter } from '@solana/wallet-adapter-wallets-mrchaos';
 import { clusterApiUrl } from '@solana/web3.js';
 import { useSnackbar } from 'notistack';
 import type { FC, ReactNode } from 'react';
@@ -31,7 +31,7 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
             /**
              * Select the wallets you wish to support, by instantiating wallet adapters here.
              *
-             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets`.
+             * Common adapters can be found in the npm package `@solana/wallet-adapter-wallets-mrchaos`.
              * That package supports tree shaking and lazy loading -- only the wallets you import
              * will be compiled into your application, and only the dependencies of wallets that
              * your users connect to will be loaded.

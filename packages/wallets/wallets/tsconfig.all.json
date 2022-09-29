@@ -53,6 +53,9 @@
             "path": "../fake/tsconfig.all.json"
         },
         {
+            "path": "../cherry/tsconfig.all.json"
+        },        
+        {
             "path": "../glow/tsconfig.all.json"
         },
         {

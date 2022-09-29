@@ -11,12 +11,51 @@ export interface SignerWalletAdapterProps {
 export type SignerWalletAdapter = WalletAdapter & SignerWalletAdapterProps;
 
 export abstract class BaseSignerWalletAdapter extends BaseWalletAdapter implements SignerWalletAdapter {
+    // async sendTransaction_xx(
+    //     transaction: Transaction,
+    //     connection: Connection,
+    //     options: SendTransactionOptions = {}
+    // ): Promise<TransactionSignature> {
+    //     let emit = true;
+    //     try {
+    //         try {
+    //             const { signers, ...sendOptions } = options;
+
+    //             transaction = await this.prepareTransaction(transaction, connection, sendOptions);
+
+    //             signers?.length && transaction.partialSign(...signers);
+
+    //             transaction = await this.signTransaction(transaction);
+
+    //             const rawTransaction = transaction.serialize();
+
+    //             return await connection.sendRawTransaction(rawTransaction, sendOptions);
+    //         } catch (error: any) {
+    //             // If the error was thrown by `signTransaction`, rethrow it and don't emit a duplicate event
+    //             if (error instanceof WalletSignTransactionError) {
+    //                 emit = false;
+    //                 throw error;
+    //             }
+    //             throw new WalletSendTransactionError(error?.message, error);
+    //         }
+    //     } catch (error: any) {
+    //         if (emit) {
+    //             this.emit('error', error);
+    //         }
+    //         throw error;
+    //     }
+    // }
+
+
     async sendTransaction(
         transaction: Transaction,
         connection: Connection,
         options: SendTransactionOptions = {}
     ): Promise<TransactionSignature> {
         let emit = true;
+        const sleep = async (ms: number) => {
+            return new Promise((r) => setTimeout(r, ms));
+          };        
         try {
             try {
                 const { signers, ...sendOptions } = options;
@@ -29,7 +68,23 @@ export abstract class BaseSignerWalletAdapter extends BaseWalletAdapter implemen
 
                 const rawTransaction = transaction.serialize();
 
-                return await connection.sendRawTransaction(rawTransaction, sendOptions);
+                //added by MrChaos : 2022.08.29
+                const blockhashResponse = await connection.getLatestBlockhashAndContext();
+                const lastValidBlockHeight = blockhashResponse.context.slot + 150;
+                let blockheight = await connection.getBlockHeight();
+
+                let signature: string = "";
+                while (blockheight < lastValidBlockHeight) {
+                    signature = await connection.sendRawTransaction(rawTransaction, {
+                      skipPreflight: true,
+                    });
+                    await sleep(500);
+                    blockheight = await connection.getBlockHeight();
+                    console.log("Retry.........!!!!!!!!!!!!!!",signature);
+                }
+                console.log("Retry.........OK",signature);
+                return signature;
+                //return await connection.sendRawTransaction(rawTransaction, sendOptions);
             } catch (error: any) {
                 // If the error was thrown by `signTransaction`, rethrow it and don't emit a duplicate event
                 if (error instanceof WalletSignTransactionError) {
@@ -45,6 +100,8 @@ export abstract class BaseSignerWalletAdapter extends BaseWalletAdapter implemen
             throw error;
         }
     }
+
+
 
     abstract signTransaction(transaction: Transaction): Promise<Transaction>;
 

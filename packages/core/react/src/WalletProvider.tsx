@@ -180,6 +180,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({
 
     // Connect the adapter to the wallet
     const connect = useCallback(async () => {
+        console.log("packages/core/react/src/WalletProvider.tsx-connect:Start!!!!!");
         if (isConnecting.current || isDisconnecting.current || connected) return;
         if (!adapter) throw handleError(new WalletNotSelectedError());
 
@@ -232,8 +233,10 @@ export const WalletProvider: FC<WalletProviderProps> = ({
     // Send a transaction using the provided connection
     const sendTransaction = useCallback(
         async (transaction: Transaction, connection: Connection, options?: SendTransactionOptions) => {
+            console.log("packages/core/react/src/WalletProvider.tsx-sendTransaction:Start!!!!!");
             if (!adapter) throw handleError(new WalletNotSelectedError());
             if (!connected) throw handleError(new WalletNotConnectedError());
+            console.log("packages/core/react/src/WalletProvider.tsx-sendTransaction:adapter.name :",adapter.name);
             return await adapter.sendTransaction(transaction, connection, options);
         },
         [adapter, handleError, connected]
@@ -244,6 +247,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({
         () =>
             adapter && 'signTransaction' in adapter
                 ? async (transaction: Transaction): Promise<Transaction> => {
+                      console.log("packages/core/react/src/WalletProvider.tsx-signTransaction:Start!!!!!");
                       if (!connected) throw handleError(new WalletNotConnectedError());
                       return await adapter.signTransaction(transaction);
                   }
@@ -256,6 +260,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({
         () =>
             adapter && 'signAllTransactions' in adapter
                 ? async (transactions: Transaction[]): Promise<Transaction[]> => {
+                      console.log("packages/core/react/src/WalletProvider.tsx-signAllTransactions:Start!!!!!");
                       if (!connected) throw handleError(new WalletNotConnectedError());
                       return await adapter.signAllTransactions(transactions);
                   }
@@ -268,6 +273,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({
         () =>
             adapter && 'signMessage' in adapter
                 ? async (message: Uint8Array): Promise<Uint8Array> => {
+                      console.log("packages/core/react/src/WalletProvider.tsx-signMessage:Start!!!!!");
                       if (!connected) throw handleError(new WalletNotConnectedError());
                       return await adapter.signMessage(message);
                   }

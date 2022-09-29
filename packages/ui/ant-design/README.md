@@ -39,7 +39,7 @@ npm install --save \
 
 ```
 npm install --save \
-    @solana/wallet-adapter-wallets \
+    @solana/wallet-adapter-wallets-mrchaos \
     @solana/wallet-adapter-react \
     @solana/wallet-adapter-ant-design \
     @solana/wallet-adapter-base

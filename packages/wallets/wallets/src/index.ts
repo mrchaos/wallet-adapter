@@ -10,6 +10,7 @@ export * from '@solana/wallet-adapter-coinbase';
 export * from '@solana/wallet-adapter-coinhub';
 export * from '@solana/wallet-adapter-exodus';
 export * from '@solana/wallet-adapter-fake';
+export * from '@solana/wallet-adapter-cherry-mrchaos';
 export * from '@solana/wallet-adapter-glow';
 export * from '@solana/wallet-adapter-huobi';
 export * from '@solana/wallet-adapter-hyperpay';
